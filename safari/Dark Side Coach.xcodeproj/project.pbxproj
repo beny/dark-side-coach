@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		000000000000000000000001 = {
+			isa = PBXFileReference;
+			path = App.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+		};
+		000000000000000000000002 = {
+			isa = PBXFileReference;
+			path = SafariWebExtensionHandler.swift;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.swift;
+		};
+		000000000000000000000003 = {
+			isa = PBXFileReference;
+			path = "Extension-Info.plist";
+			sourceTree = "<group>";
+			lastKnownFileType = text.plist.xml;
+		};
+		000000000000000000000004 = {
+			isa = PBXFileReference;
+			path = "MacApp-Info.plist";
+			sourceTree = "<group>";
+			lastKnownFileType = text.plist.xml;
+		};
+		000000000000000000000005 = {
+			isa = PBXFileReference;
+			path = DarkSide.icns;
+			sourceTree = "<group>";
+			lastKnownFileType = image.icns;
+		};
+		000000000000000000000006 = {
+			isa = PBXFileReference;
+			path = "Dark Side Coach.app";
+			sourceTree = BUILT_PRODUCTS_DIR;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+		};
+		000000000000000000000007 = {
+			isa = PBXFileReference;
+			path = "Dark Side Coach Extension.appex";
+			sourceTree = BUILT_PRODUCTS_DIR;
+			explicitFileType = "wrapper.app-extension";
+			includeInIndex = 0;
+		};
+		000000000000000000000008 = {
+			isa = PBXGroup;
+			name = Products;
+			children = (
+				000000000000000000000006,
+				000000000000000000000007,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000009 = {
+			isa = PBXFileReference;
+			path = manifest.json;
+			sourceTree = "<group>";
+			lastKnownFileType = text.json;
+		};
+		00000000000000000000000A = {
+			isa = PBXFileReference;
+			path = shared.js;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.javascript;
+		};
+		00000000000000000000000B = {
+			isa = PBXFileReference;
+			path = portraits.js;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.javascript;
+		};
+		00000000000000000000000C = {
+			isa = PBXFileReference;
+			path = booking.js;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.javascript;
+		};
+		00000000000000000000000D = {
+			isa = PBXFileReference;
+			path = calendar.js;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.javascript;
+		};
+		00000000000000000000000E = {
+			isa = PBXFileReference;
+			path = background.js;
+			sourceTree = "<group>";
+			lastKnownFileType = sourcecode.javascript;
+		};
+		00000000000000000000000F = {
+			isa = PBXFileReference;
+			path = icons;
+			sourceTree = "<group>";
+			lastKnownFileType = folder;
+		};
+		000000000000000000000010 = {
+			isa = PBXGroup;
+			name = "Web Extension";
+			path = ../extension;
+			sourceTree = "<group>";
+			children = (
+				000000000000000000000009,
+				00000000000000000000000A,
+				00000000000000000000000B,
+				00000000000000000000000C,
+				00000000000000000000000D,
+				00000000000000000000000E,
+				00000000000000000000000F,
+			);
+		};
+		000000000000000000000011 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000001,
+				000000000000000000000004,
+				000000000000000000000005,
+				000000000000000000000002,
+				000000000000000000000003,
+				000000000000000000000010,
+				000000000000000000000008,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000012 = {
+			isa = PBXBuildFile;
+			fileRef = 000000000000000000000005;
+		};
+		000000000000000000000013 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000012,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000014 = {
+			isa = PBXBuildFile;
+			fileRef = 000000000000000000000001;
+		};
+		000000000000000000000015 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000014,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000016 = {
+			isa = PBXBuildFile;
+			fileRef = 000000000000000000000002;
+		};
+		000000000000000000000017 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000016,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000018 = {
+			isa = PBXBuildFile;
+			fileRef = 000000000000000000000009;
+		};
+		000000000000000000000019 = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000A;
+		};
+		00000000000000000000001A = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000B;
+		};
+		00000000000000000000001B = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000C;
+		};
+		00000000000000000000001C = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000D;
+		};
+		00000000000000000000001D = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000E;
+		};
+		00000000000000000000001E = {
+			isa = PBXBuildFile;
+			fileRef = 00000000000000000000000F;
+		};
+		00000000000000000000001F = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000018,
+				000000000000000000000019,
+				00000000000000000000001A,
+				00000000000000000000001B,
+				00000000000000000000001C,
+				00000000000000000000001D,
+				00000000000000000000001E,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000020 = {
+			isa = PBXBuildFile;
+			fileRef = 000000000000000000000007;
+			settings = {
+				ATTRIBUTES = (
+					RemoveHeadersOnCopy,
+					CodeSignOnCopy,
+				);
+			};
+		};
+		000000000000000000000021 = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000020,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Embed App Extensions";
+			dstPath = "";
+			dstSubfolderSpec = 13;
+		};
+		000000000000000000000022 = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				CODE_SIGN_STYLE = Automatic;
+				MARKETING_VERSION = 0.1.7;
+				CURRENT_PROJECT_VERSION = 1;
+				CLANG_ENABLE_MODULES = YES;
+			};
+		};
+		000000000000000000000023 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				CODE_SIGN_STYLE = Automatic;
+				MARKETING_VERSION = 0.1.7;
+				CURRENT_PROJECT_VERSION = 1;
+				CLANG_ENABLE_MODULES = YES;
+			};
+		};
+		000000000000000000000024 = {
+			isa = XCConfigurationList;
+			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			buildConfigurations = (
+				000000000000000000000022,
+				000000000000000000000023,
+			);
+		};
+		000000000000000000000025 = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				PRODUCT_NAME = "Dark Side Coach";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.darksidemovement.coach;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_FILE[sdk=macosx*]" = "MacApp-Info.plist";
+				ENABLE_APP_SANDBOX = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+				);
+			};
+		};
+		000000000000000000000026 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				PRODUCT_NAME = "Dark Side Coach";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.darksidemovement.coach;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_FILE[sdk=macosx*]" = "MacApp-Info.plist";
+				ENABLE_APP_SANDBOX = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
+				);
+			};
+		};
+		000000000000000000000027 = {
+			isa = XCConfigurationList;
+			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			buildConfigurations = (
+				000000000000000000000025,
+				000000000000000000000026,
+			);
+		};
+		000000000000000000000028 = {
+			isa = XCBuildConfiguration;
+			name = Debug;
+			buildSettings = {
+				PRODUCT_NAME = "Dark Side Coach Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.darksidemovement.coach.Extension;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Extension-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dark Side Coach";
+				ENABLE_APP_SANDBOX = YES;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+			};
+		};
+		000000000000000000000029 = {
+			isa = XCBuildConfiguration;
+			name = Release;
+			buildSettings = {
+				PRODUCT_NAME = "Dark Side Coach Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = cz.darksidemovement.coach.Extension;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Extension-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dark Side Coach";
+				ENABLE_APP_SANDBOX = YES;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				SKIP_INSTALL = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+			};
+		};
+		00000000000000000000002A = {
+			isa = XCConfigurationList;
+			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			buildConfigurations = (
+				000000000000000000000028,
+				000000000000000000000029,
+			);
+		};
+		00000000000000000000002B = {
+			isa = PBXNativeTarget;
+			name = "Dark Side Coach Extension";
+			buildConfigurationList = 00000000000000000000002A;
+			buildPhases = (
+				000000000000000000000017,
+				00000000000000000000001F,
+			);
+			buildRules = ();
+			dependencies = ();
+			productReference = 000000000000000000000007;
+			productType = "com.apple.product-type.app-extension";
+		};
+		00000000000000000000002C = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00000000000000000000002F;
+			proxyType = 1;
+			remoteGlobalIDString = 00000000000000000000002B;
+			remoteInfo = "Dark Side Coach Extension";
+		};
+		00000000000000000000002D = {
+			isa = PBXTargetDependency;
+			target = 00000000000000000000002B;
+			targetProxy = 00000000000000000000002C;
+		};
+		00000000000000000000002E = {
+			isa = PBXNativeTarget;
+			name = "Dark Side Coach";
+			buildConfigurationList = 000000000000000000000027;
+			buildPhases = (
+				000000000000000000000015,
+				000000000000000000000013,
+				000000000000000000000021,
+			);
+			buildRules = ();
+			dependencies = (
+				00000000000000000000002D,
+			);
+			productReference = 000000000000000000000006;
+			productType = "com.apple.product-type.application";
+		};
+		00000000000000000000002F = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2720;
+			};
+			buildConfigurationList = 000000000000000000000024;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			knownRegions = (
+				en,
+				Base,
+			);
+			hasScannedForEncodings = 0;
+			mainGroup = 000000000000000000000011;
+			productRefGroup = 000000000000000000000008;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00000000000000000000002E,
+				00000000000000000000002B,
+			);
+		};
+	};
+	rootObject = 00000000000000000000002F;
+}
