@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dark Side Coach",
-  "version": "0.1.7",
+  "version": "0.2.1",
   "description": "Doplní trenéra a téma z Notion do detailu lekce Dark Side Movement.",
   "host_permissions": [
     "https://darksidemovement.notion.site/*"
@@ -19,16 +19,6 @@
         "portraits.js",
         "booking.js"
       ]
-    },
-    {
-      "matches": [
-        "https://darksidemovement.notion.site/*"
-      ],
-      "js": [
-        "shared.js",
-        "calendar.js"
-      ],
-      "run_at": "document_start"
     }
   ],
   "icons": {
