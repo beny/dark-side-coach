@@ -3,7 +3,6 @@
 const api = globalThis.browser ?? globalThis.chrome;
 const bookingOrigin = "https://rezervace.darksidemovement.cz";
 const notionOrigin = "https://darksidemovement.notion.site";
-const fixtureOrigin = "http://127.0.0.1:8765";
 
 function clean(text) {
   return text?.replace(/[\s\u200b]+/g, " ").trim() ?? "";
@@ -83,8 +82,4 @@ function textElements(root) {
     }
   }
   return [...elements];
-}
-
-function pause(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }

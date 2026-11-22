@@ -1,21 +1,33 @@
 "use strict";
 
 (() => {
+  const restartEvent = "dark-side-coach-restart";
+  document.dispatchEvent(new Event(restartEvent));
+
   const fieldLabels = {
     "datum": "date", "cas": "time", "pobocka": "branch", "pocet uchazecu": "attendees",
     "rozpis temat": "schedule", "rozpis tema": "schedule"
   };
-  function isScheduleLink(anchor) {
-    if (!anchor?.matches("a[href]")) return false;
-    if (location.origin === fixtureOrigin || location.protocol === "file:") {
-      const fixture = new URL("./calendar.html", location.href);
-      const target = new URL(anchor.href);
-      return target.protocol === fixture.protocol && target.host === fixture.host && target.pathname === fixture.pathname;
-    }
-    return anchor.href.startsWith(notionOrigin + "/");
-  }
   let opened;
   let scheduled = false;
+  let disposed = false;
+
+  function clearFields() {
+    opened?.outputs.forEach(output => output.remove());
+    opened = undefined;
+  }
+
+  function suppressDuplicates() {
+    for (const output of document.querySelectorAll("[data-dark-side-coach]")) {
+      if (opened?.outputs.includes(output)) continue;
+      if (output.hasAttribute("data-dark-side-coach-managed")) {
+        output.remove();
+      } else if (output.style.display !== "none" || output.style.getPropertyPriority("display") !== "important") {
+        // Legacy copies keep their own rows connected and won't reinsert them.
+        output.style.setProperty("display", "none", "important");
+      }
+    }
+  }
 
   function fieldValue(label, panel) {
     for (let element = label; element && element !== panel; element = element.parentElement) {
@@ -35,7 +47,7 @@
         if (!fields.date || !fields.time || !fields.branch) continue;
         const schedule = fieldValue(heading, panel);
         const link = [schedule, ...Array.from(schedule?.querySelectorAll("a[href]") ?? [])].find(anchor => {
-          return isScheduleLink(anchor) && visible(anchor);
+          return anchor?.matches("a[href]") && anchor.href.startsWith(notionOrigin + "/") && visible(anchor);
         });
         if (!link) continue;
         const values = Object.fromEntries(["date", "time", "branch", "attendees"]
@@ -100,6 +112,7 @@
 
     function track(element) {
       element.dataset.darkSideCoach = "";
+      element.dataset.darkSideCoachManaged = "";
       outputs.push(element);
       return element;
     }
@@ -147,7 +160,7 @@
     portrait.src = portraitBase + asset;
   }
 
-  function showResult([coach, topic], result, retry) {
+  function showResult([coach, topic], result) {
     if (result.state === "found") {
       showCoach(coach, result.coach);
       topic.textContent = result.topic;
@@ -158,29 +171,14 @@
       missing: "Termín jsem v rozpisu nenašel.",
       ambiguous: "V rozpisu je více lekcí ve stejný čas.",
       access: "Povol přístup k Notion a znovu otevři detail."
-    }[result.state] ?? {
-      tab: "Rozšíření se s kartou Notion nespojilo.",
-      calendar: "Na stránce Notion se nenačetl kalendář.",
-      branch: "V Notion se nenašel kalendář pro tuto pobočku.",
-      date: "Ve zobrazeném kalendáři se nenašlo datum lekce.",
-      cards: "Z karet v kalendáři se nepodařilo přečíst lekci."
-    }[result.reason] ?? "Rozpis se nepodařilo načíst.";
-
-    if (result.state === "retry-visible") {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = "Načíst v Notion";
-      button.style.cssText = "display:block;margin-block-start:.25em;font:inherit;text-decoration:underline;cursor:pointer";
-      button.addEventListener("click", retry, { once: true });
-      topic.append(button);
-    }
+    }[result.state] ?? "Rozpis se nepodařilo načíst.";
   }
 
   async function update() {
+    suppressDuplicates();
     const lesson = findLesson();
     if (!lesson) {
-      opened?.outputs.forEach(output => output.remove());
-      opened = undefined;
+      clearFields();
       return;
     }
 
@@ -188,24 +186,18 @@
     const key = JSON.stringify([link.href, date, time, branch]);
     if (opened?.key === key && opened.heading === heading && opened.outputs.every(output => output.isConnected)) return;
 
-    opened?.outputs.forEach(output => output.remove());
+    clearFields();
     const { outputs, elements } = addFields(lesson);
     opened = { heading, key, outputs };
-    async function load(foreground = false) {
-      elements.forEach(element => { element.textContent = "Načítám…"; });
-      let result;
-      try {
-        result = await api.runtime.sendMessage({
-          type: "dark-side-lesson", url: link.href, date, time, branch, foreground
-        });
-      } catch {
-        result = { state: foreground ? "unavailable" : "retry-visible", reason: "tab" };
-      }
-      if (opened?.outputs === outputs && outputs.every(output => output.isConnected)) {
-        showResult(elements, result ?? {}, () => load(true));
-      }
+    let result;
+    try {
+      result = await api.runtime.sendMessage({ type: "dark-side-lesson", url: link.href, date, time, branch });
+    } catch {
+      result = { state: "unavailable" };
     }
-    await load();
+    if (opened?.outputs === outputs && outputs.every(output => output.isConnected)) {
+      showResult(elements, result ?? {});
+    }
   }
 
   function scheduleUpdate() {
@@ -213,11 +205,17 @@
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      update();
+      if (!disposed) update();
     });
   }
 
-  new MutationObserver(scheduleUpdate).observe(document.body, {
+  const observer = new MutationObserver(scheduleUpdate);
+  document.addEventListener(restartEvent, () => {
+    disposed = true;
+    observer.disconnect();
+    clearFields();
+  }, { once: true });
+  observer.observe(document.body, {
     subtree: true, childList: true, characterData: true, attributes: true,
     attributeFilter: ["class", "style", "hidden", "open", "href", "aria-hidden"]
   });
